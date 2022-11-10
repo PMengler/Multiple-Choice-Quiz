@@ -32,7 +32,8 @@ section {
     border: red 1px solid;
     flex-flow: column wrap;
     flex-shrink: 1;
-    margin: 50px;
+    /* margin: 50px 50px 50px 50px; */
+    text-align: center;
 }
 
 p {
@@ -44,10 +45,16 @@ button {
     text-align: center;
     margin-left: 40%;
     margin-right: 40%;
+    margin-top: 20px;
+    align-items: center;
 }
 
-.bottomNav {
-    text-align: center;
+.start {
+    padding: 10px;
+}
+
+.container {
+    margin: 50px;
 }
 
 footer {
