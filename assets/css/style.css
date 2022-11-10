@@ -16,12 +16,21 @@ h2 {
     border: red 1px solid;
 }
 
+h4 {
+    text-align: right;
+    margin-right: 20px;
+}
+
 nav {
+    flex-flow: row wrap;
+    display: inline-block;
     flex-direction: flex-start;
+    margin-left: 20px;
 }
 
 section {
     border: red 1px solid;
+    flex-flow: column wrap;
     flex-shrink: 1;
     margin: 50px;
 }
@@ -32,7 +41,13 @@ p {
 }
 
 button {
-    align-self: center;
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.bottomNav {
+    text-align: center;
 }
 
 footer {
