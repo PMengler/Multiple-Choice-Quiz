@@ -26,17 +26,35 @@
             Keep in mind that incorrect answers will penalize your score/time by ten seconds.
             </p>
         </div>
-        <button class="start" id="startQuiz">Start Quiz</button>
+        <button class="startQuiz" id="start">Start Quiz</button>
     </section>
-    
+
+    <section class="container" id="quiz" style="display: none">
+        <div id="question"></div>
+        <div id="choices"></div>
+            <ul>
+                <li class="choice" id="A" onclick="checkAnswer('A')"></li>
+                <li class="choice" id="B" onclick="checkAnswer('B')"></li>
+                <li class="choice" id="C" onclick="checkAnswer('C')"></li>
+                <li class="choice" id="D" onclick="checkAnswer('D')"></li>
+            </ul>
+        <div id="counter"></div>
+        <div id="progress"></div>
+    </section>
+
+    <div id="scoreContainer" style="display: none"></div>
+
     <section>
+
         <button id="restart">Try Again</button>
         <button id="clear">Clear High Scores</button>
     </section>
 
 </body>
+
 <footer>
-    <p>I am bad at css lol</p>
+    <p>Thanks for your participation!</p>
 </footer>
+
 <script src="/assets/js/script.js"></script>
 </html>
