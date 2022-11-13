@@ -11,36 +11,39 @@ const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+const submitEl = document.getElementById("submitScore");
+
+var timeLeft = 60;
 
 // create our questions
 let questions = [
     {
         question: "What does HTML stand for?",
-        choiceA: "Correct",
-        choiceB: "Wrong",
-        choiceC: "Wrong",
-        choiceD: "Wrong",
+        choiceA: "HyperText Markup Language",
+        choiceB: "HugeText Markup Language",
+        choiceC: "HyperText Made Language",
+        choiceD: "HyperText Mark Long",
         correct: "A"
     },{
         question: "What does CSS stand for?",
-        choiceA: "Wrong",
-        choiceB: "Correct",
-        choiceC: "Wrong",
-        choiceD: "Wrong",
+        choiceA: "Corresponding Style Sheets",
+        choiceB: "Cascading Style Sheets",
+        choiceC: "Cool Style Sheets",
+        choiceD: "Cascading Sheet Styles",
         correct: "B"
     },{
         question: "What does JS stand for?",
-        choiceA: "Wrong",
-        choiceB: "Wrong",
-        choiceC: "Correct",
-        choiceD: "Wrong",
+        choiceA: "JokerStyle",
+        choiceB: "JumbleScript",
+        choiceC: "JavaScript",
+        choiceD: "JavaSheet",
         correct: "C"
     },{
-        question: "How do you invoke a function?",
-        choiceA: "Wrong",
-        choiceB: "Wrong",
-        choiceC: "Wrong",
-        choiceD: "Correct",
+        question: "What is the correct syntax for invoking a function?",
+        choiceA: "function{}",
+        choiceB: "function[]",
+        choiceC: "function||",
+        choiceD: "function()",
         correct: "D"
     }
 ];
@@ -93,8 +96,8 @@ function displayCounter(){
             displayQuestion();
         }else{
             // end the quiz and show the score
-            // clearInterval(timeLeft);
-            displayScore();
+            clearInterval(timerEl);
+            // displayScore();
         }
     }
 };
@@ -105,16 +108,24 @@ function checkAnswer(answer) {
         answerIsCorrect();
     } else {
         answerIsWrong();
+
     }
     count = 0;
     if (runningQuestion < lastQuestion) {
         runningQuestion++;
         displayQuestion();
-     } else {
-        displayScore();
+     } 
+     else {
+        clearInterval(timeLeft);
      }
      console.log(score);
+     localStorage.setItem('score', score);
 };
+
+submitEl.addEventListener("click", function() {
+    var name = prompt("You answered " + localStorage.getItem("score", score) + " out of 4 correctly. Enter your name to save your score.");
+    localStorage.setItem("name", name);
+});
 
 // answer is Correct
 function answerIsCorrect(){
@@ -124,19 +135,11 @@ function answerIsCorrect(){
 // answer is Wrong
 function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "red";
-};
-
-function displayScore(){
-    scoreDiv.style.display = "block";
-    
-    // calculate the amount of question percent answered by the user
-    const scorePerCent = Math.round(100 * score/questions.length);
+    timeLeft -= 10;
 };
 
 // Timer that counts down from 60 seconds to 0
 function countdown() {
-    var timeLeft = 60;
-
     var timeInterval = setInterval(function() {
     if (timeLeft > 1) {
         timerEl.textContent = 'Time Left: ' + timeLeft + ' seconds remaining';
@@ -147,8 +150,7 @@ function countdown() {
         timeLeft--;
     } else {
         timerEl.textContent = 'Time is up!'
-        clearInterval(timeInterval);
-        // alert(score);
-    }
+        clearInterval(timeLeft);   
+    };
 }, 1000)
 };
